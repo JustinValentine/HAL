@@ -1,5 +1,0 @@
-/home/thor/Desktop/HAL/build/CMakeFiles/hal_bringup.dir
-/home/thor/Desktop/HAL/build/CMakeFiles/edit_cache.dir
-/home/thor/Desktop/HAL/build/CMakeFiles/rebuild_cache.dir
-/home/thor/Desktop/HAL/build/_deps/moteus-build/CMakeFiles/edit_cache.dir
-/home/thor/Desktop/HAL/build/_deps/moteus-build/CMakeFiles/rebuild_cache.dir
