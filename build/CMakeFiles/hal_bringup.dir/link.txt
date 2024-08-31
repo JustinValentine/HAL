@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/hal_bringup.dir/src/UM7.cc.o CMakeFiles/hal_bringup.dir/src/hal_bringup.cc.o CMakeFiles/hal_bringup.dir/src/hal.cc.o -o hal_bringup  -lpthread /usr/lib/x86_64-linux-gnu/libserial.so 
