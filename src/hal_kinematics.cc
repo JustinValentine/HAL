@@ -6,4 +6,28 @@ class HomogeneousTransform
     HomogeneousTransform();
     ~HomogeneousTransform();
 
+};
+
+class ForwardKinematics
+{
+    public:
+    ForwardKinematics();
+    ~ForwardKinematics();
+};
+
+HomogeneousTransform::HomogeneousTransform(){
+
+};
+
+HomogeneousTransform::~HomogeneousTransform(){
+
+};
+
+
+ForwardKinematics::ForwardKinematics(){
+
+}
+
+ForwardKinematics::ForwardKinematics(){
+    
 }
