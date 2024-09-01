@@ -55,9 +55,6 @@ public:
         MotorGoal() : target_motor_position(9), target_motor_velocity(9), target_kd(9), target_kp(9) {}
     };
 
-    void robot_ik(); // Inverse kinematics
-    void robot_fk();  // Forward kinematics
-
     bool robot_stand();
     bool robot_jump();
     

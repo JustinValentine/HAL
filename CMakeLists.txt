@@ -22,13 +22,18 @@ include_directories(
     /usr/include/libserial 
 )
 
-set(LIBSERIAL_LIB "/usr/lib/x86_64-linux-gnu/libserial.so")
-set(SOURCES 
-    src/UM7.cc 
-    src/hal_bringup.cc 
-    src/hal.cc
+set(LIBSERIAL_LIB 
+    "/usr/lib/x86_64-linux-gnu/libserial.so"
+    moteus::cpp
 )
 
-add_executable(hal_bringup ${SOURCES})
-target_link_libraries(hal_bringup moteus::cpp pthread ${LIBSERIAL_LIB})
+set(SOURCES 
+    src/UM7.cc 
+    src/hal_core.cc 
+    src/hal.cc
+    src/kinematics.cc
+)
+
+add_executable(hal ${SOURCES})
+target_link_libraries(hal ${LIBSERIAL_LIB})
 
