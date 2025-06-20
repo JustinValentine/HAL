@@ -1,10 +1,14 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.14)
+project(RobotLegProject CXX)
 
-project(HAL)
-
+# Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Find the Eigen library
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
+# Add moteus library from GitHub using FetchContent
 include(FetchContent)
 FetchContent_Declare(
   moteus
@@ -13,27 +17,47 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(moteus)
 
-find_package(Eigen3 REQUIRED)
+# Add project include directory
+include_directories(include)
 
-include_directories(
-    ${Eigen_INCLUDE_DIRS}
-    ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_SOURCE_DIR}/src
-    /usr/include/libserial 
+# --- Define application executables ---
+
+# Test 1: Passive state reporting
+add_executable(
+    passive_test_app
+    projects/01_passive_test/main.cpp
+    src/kinematics.cpp
+    src/virtual_leg_controller.cpp
 )
 
-set(LIBSERIAL_LIB 
-    "/usr/lib/x86_64-linux-gnu/libserial.so"
-    moteus::cpp
+# Test 2: Virtual leg controller test
+add_executable(
+    virtual_leg_test_app
+    projects/02_virtual_leg_test/main.cpp
+    src/kinematics.cpp
+    src/virtual_leg_controller.cpp
 )
 
-set(SOURCES 
-    src/UM7.cc 
-    src/hal_core.cc 
-    src/hal.cc
-    src/kinematics.cc
+# App 3: Hopping controller
+add_executable(
+    hopping_app
+    projects/03_hopping/main.cpp
+    src/kinematics.cpp
+    src/virtual_leg_controller.cpp
 )
 
-add_executable(hal ${SOURCES})
-target_link_libraries(hal ${LIBSERIAL_LIB})
 
+# --- Link libraries to all targets ---
+foreach(app
+    passive_test_app
+    virtual_leg_test_app
+    hopping_app
+)
+    target_link_libraries(${app} PRIVATE
+        Eigen3::Eigen
+        moteus
+    )
+    target_include_directories(${app} PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+    )
+endforeach()
